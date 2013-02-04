@@ -19,7 +19,7 @@ niconico douga. It requires the Gauche version 0.9.3.3 or later.
     -s, --shuffle          shuffle list before download.
 
 ## Handling requests
-At first, configure account. Set two variable *mail* and *password* in nd.scm.
+At first, configure account. Set two variable `*mail*` and `*password*` in nd.scm.
 
 example:
 
