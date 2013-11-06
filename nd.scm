@@ -39,7 +39,7 @@
                  :secure #t
                  :no-redirect #t)
     (slot-set! self 'user-session
-               (abstruct-cookie header #/user_session=user_session_[0-9_]+/))
+               (abstruct-cookie header #/user_session=user_session_[^;]+/))
     status))
 
 (define-method nico-prewatch ((self <nico>) video-id)
