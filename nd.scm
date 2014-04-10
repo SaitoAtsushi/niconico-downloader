@@ -7,9 +7,6 @@
 (define *password* "Set your password.")
 
 ;;; set your filesystem encode
-(define *fsencode*
-  (cond-expand (gauche.os.windows 'Shift_JIS)
-               (else 'utf8)))
 
 (define-syntax use-each
   (syntax-rules ()
@@ -100,8 +97,6 @@
 
 (define path-cleanup (cut regexp-replace-all #/[\\\/:*?\"<>\|\t]/ <> "_"))
 
-(define fsencode (cut ces-convert <> (gauche-character-encoding) *fsencode*))
-
 (define-class <progress-output-port> (<buffered-output-port>)
   ((port :init-keyword :port)
    (max-value :init-keyword :max-value)
@@ -128,9 +123,8 @@
   (string->number ((if economy sizelow sizehigh) info)))
 
 (define (make-filename prefix video-id title type)
-  (fsencode
-   (path-cleanup
-    #`",|prefix|,|video-id| ,|title|.,|type|")))
+  (path-cleanup
+   #`",|prefix|,|video-id| ,|title|.,|type|"))
 
 (define-syntax call-with-output-progress-port
   (syntax-rules ()
